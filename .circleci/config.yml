@@ -41,7 +41,7 @@ jobs:
           name: Build and push Docker image
           command: |
             docker build -t $DOCKERHUB_USER/$IMAGE_NAME:$TAG .
-            echo $DOCKER_HUB_PASSWORD_USER | docker login -u $DOCKERHUB_USER --password-stdin
+            docker login -u $DOCKERHUB_USER -p $DOCKER_HUB_PASSWORD_USER docker.io
             docker push $DOCKERHUB_USER/$IMAGE_NAME:$TAG
   deploy:
     executor: heroku/default
